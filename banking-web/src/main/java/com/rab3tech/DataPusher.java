@@ -67,11 +67,15 @@ public class DataPusher implements CommandLineRunner {
 			AccountStatus accountStatus3=new AccountStatus(3,"AS03","DORMANT","DORMANT");
 			AccountStatus accountStatus4=new AccountStatus(4,"AS04","APPROVED","APPROVED");
 			AccountStatus accountStatus5=new AccountStatus(5,"AS05","ACTIVE","ACTIVE");
+			AccountStatus accountStatus6=new AccountStatus(6,"AS06","REGISTERED","REGISTERED");
+
 			accountStatusRepository.save(accountStatus1);
 			accountStatusRepository.save(accountStatus2);
 			accountStatusRepository.save(accountStatus3);
 			accountStatusRepository.save(accountStatus4);
 			accountStatusRepository.save(accountStatus5);
+			accountStatusRepository.save(accountStatus6);
+
 		}
 		
 		Optional<AccountType> optional2=accountTypeRepository.findById(1);
@@ -141,16 +145,19 @@ public class DataPusher implements CommandLineRunner {
 		
 		Optional<SecurityQuestions> seOptional=securityQuestionsRepository.findById(1);
 		if(!seOptional.isPresent()) {
-			SecurityQuestions securityQuestions1=new SecurityQuestions (1,"What is your birth place?");
-			SecurityQuestions securityQuestions2=new SecurityQuestions (2,"What is your mother's maiden name?");
-			SecurityQuestions securityQuestions3=new SecurityQuestions (3,"What is your favourite author's name?");
-			SecurityQuestions securityQuestions4=new SecurityQuestions (4,"What is your pet name?");
-			SecurityQuestions securityQuestions5=new SecurityQuestions (5,"What is your favourite soccer team?");
-			SecurityQuestions securityQuestions6=new SecurityQuestions (6,"What is the name of your childhood hero?");
-			SecurityQuestions securityQuestions7=new SecurityQuestions (7,"What is your father's middle name?");
-			SecurityQuestions securityQuestions8=new SecurityQuestions (8,"What is the name of your first crush?");
-			SecurityQuestions securityQuestions9=new SecurityQuestions (9,"What was the name of your first school?");
-			SecurityQuestions securityQuestions10=new SecurityQuestions (10,"What is your favourite vacation spot?");
+			SecurityQuestions securityQuestions1=new SecurityQuestions (1,"What is your birth place?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions2=new SecurityQuestions (2,"What is your mother's maiden name?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions3=new SecurityQuestions (3,"What is your favourite author's name?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));;
+			SecurityQuestions securityQuestions4=new SecurityQuestions (4,"What is your pet name?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));;
+			SecurityQuestions securityQuestions5=new SecurityQuestions (5,"What is your favourite soccer team?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions6=new SecurityQuestions (6,"What is the name of your childhood hero?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions7=new SecurityQuestions (7,"What is your father's middle name?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions8=new SecurityQuestions (8,"What is the name of your first crush?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions9=new SecurityQuestions (9,"What was the name of your first school?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+			SecurityQuestions securityQuestions10=new SecurityQuestions (10,"What is your favourite vacation spot?","yes","admin100",new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
+
+			
+
 			
 			List<SecurityQuestions> securityQuestions=new ArrayList<>();
 			securityQuestions.add(securityQuestions1);

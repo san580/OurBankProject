@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Create New Product2222</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+	<div class="container">
+	<div th:fragment="Text">
+	    </div>
+	     <div th:insert="customer/Text"></div>
+		<h3>Update Profile</h3>
+		<br /> 
+		<span style="color: red; font-size: 18px;"  th:utext="${message}" id="message"></span>
+		<span th:utext="${error}" style="color: red;font-size: 18px;font-weight: bold;"></span>
+		<form action="#" method="post" th:action="@{/customer/updateAccount}"
+			th:object="${customerVO}">
+			<input type="hidden" class="form-control" th:field="*{id}" id="id" />
+			<table class="table table-bordered"
+				style="width: 100%; font-size: 16px;">
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" class="form-control" th:field="*{name}"
+						id="name" />
+					<td>Mobile:</td>
+					<td><input type="text" class="form-control"
+						th:field="*{mobile}" id="mobile" /></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="text" class="form-control"
+						th:field="*{email}" readonly="readonly" /></td>
+					<td>Job Title:</td>
+					<td><input type="text" class="form-control"
+						th:field="*{jobTitle}" /></td>
+				</tr>
+
+				<tr>
+					<td>Address:</td>
+					<td><input type="text" class="form-control"
+						th:field="*{address}" />
+					<td>SSN:</td>
+					<td><input type="text" class="form-control" th:field="*{ssn}" />
+					</td>
+				</tr>
+
+				<tr>
+					<td>Gender:</td>
+					<td><select class="form-control" th:field="*{gender}">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+					</select></td>
+					<td>Father Name</td>
+					<td><input type="text" class="form-control"
+						th:field="*{father}" /></td>
+				</tr>
+
+				<tr>
+					<td>Qualification:</td>
+					<td><select class="form-control" th:field="*{qualification}">
+							<option value="B.TECH">B.TECH</option>
+							<option value="BSC">BSC</option>
+							<option value="M.TECH">M.TECH</option>
+							<option value="MCA">MCA</option>
+					</select></td>
+
+					<td>DOB</td>
+					<td><input type="text" class="form-control" th:field="*{dob}" />
+					</td>
+					</tr>
+				<tr>
+					<td>Question1</td>
+					<td>
+					<select class="form-control" th:field="*{question1}" id="question1">
+						<option th:each="questionsVO : ${questionsVOs}"
+							th:value="${questionsVO.qid}" th:text="${questionsVO.questions}"></option>
+					</select>
+					<td>Answer1</td>
+					<td><input type="text" class="form-control"
+						th:field="*{answer1}" /></td>
+						</tr>
+						<tr>
+					<td>Question2</td>
+					<td>
+					<select class="form-control" th:field="*{question2}" id="question2">
+						<option th:each="questionsVO : ${questionsVOs}"
+							th:value="${questionsVO.qid}" th:text="${questionsVO.questions}"></option>
+					</select>
+					
+					</td>
+					<td>Answer2</td>
+					<td><input type="text" class="form-control"
+						th:field="*{answer2}" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td colspan="2">
+						<button type="submit" class="btn btn-primary">Save Submit</button> 
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>

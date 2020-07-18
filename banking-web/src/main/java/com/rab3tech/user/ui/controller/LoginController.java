@@ -1,7 +1,9 @@
 package com.rab3tech.user.ui.controller;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -13,16 +15,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rab3tech.customer.service.LoginService;
+import com.rab3tech.customer.service.impl.SecurityQuestionService;
+import com.rab3tech.vo.CustomerSecurityQueAnsVO;
 import com.rab3tech.vo.LoginVO;
+import com.rab3tech.vo.SecurityQuestionsVO;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private SecurityQuestionService securityQuestionService;
+	
+	
+	
+	
 	
 	@GetMapping(value= {"/customer/login","/logout/success"})
 	public String showCustomerLogin(@RequestParam(value="error",required=false) boolean messsage,Model model) {
@@ -61,13 +74,31 @@ public class LoginController {
 		if(optional.isPresent()) {
 					LoginVO  loginVO2=optional.get();
 					loginVO2.setPassword("");
-					session.setAttribute("userSessionVO", loginVO2);
+					session.setAttribute("userSessionVO", loginVO2);//????
 					switch (loginVO2.getRoles().get(0)) {
 					case "EMPLOYEE":
 						viewName ="employee/dashboard";
 						break;
 					case "CUSTOMER":
 						viewName ="customer/dashboard";
+						if(loginVO2.getLlt()==null) {//null means the user logs in first time
+							viewName="customer/securityQuestion";
+							CustomerSecurityQueAnsVO customerSecurityQueAnsVO = new CustomerSecurityQueAnsVO();
+							//create an object of CustomerSecurityQueAnsVO that has List<SecurityQuestionsVO> questionsVOs and add that to a view using model.add atttribute
+							//th:object="${customerSecurityQueAnsVO} pulls object into thyme leaf
+							List<SecurityQuestionsVO> questionsVOs=securityQuestionService.findAll();
+							Collections.shuffle(questionsVOs);
+							customerSecurityQueAnsVO.setQuestionsVOs(questionsVOs);
+							List<SecurityQuestionsVO> questionsVOs1=questionsVOs.subList(0, questionsVOs.size()/2);
+							List<SecurityQuestionsVO> questionsVOs2=questionsVOs.subList(questionsVOs.size()/2,questionsVOs.size());
+							model.addAttribute("questionsVOs1", questionsVOs1);
+							model.addAttribute("questionsVOs2", questionsVOs2);
+							model.addAttribute("customerSecurityQueAnsVO", customerSecurityQueAnsVO);
+						}else {
+							LoginVO  aloginVO=(LoginVO)session.getAttribute("userSessionVO");//has loginid in here
+							String loginid=aloginVO.getUsername();
+							viewName ="customer/dashboard";
+						}
 						break;
 					case "ADMIN":
 						viewName ="admin/dashboard";

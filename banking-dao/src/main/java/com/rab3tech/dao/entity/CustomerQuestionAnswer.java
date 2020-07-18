@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="customer_question_answer_tbl")
 public class CustomerQuestionAnswer {
@@ -73,5 +72,7 @@ public class CustomerQuestionAnswer {
 	public void setDom(Timestamp dom) {
 		this.dom = dom;
 	}
+
+	
 	
 }

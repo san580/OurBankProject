@@ -35,10 +35,15 @@
    <a th:href="@{/customer/enquiries}"> 
   <button type="button" class="btn btn-primary">Customer Enquiry</button>
   </a>
+ <a th:href="@{/customer/accounts}"> 
 <button type="button" class="btn btn-secondary">Lock/Unlock</button>
+</a>
 <button type="button" class="btn btn-success">Customer Transaction</button>
 <button type="button" class="btn btn-danger">Check Book Request(s)</button>
 <button type="button" class="btn btn-warning">Loan Request</button>
+<a th:href="@{/customer/accounts/approved}">
+<button type="button" class="btn btn-warning">Account Approval</button>
+</a>
   <img th:src="@{/images/customer_dashboard.jpg}" alt="page"/>
    <span th:utext="${error}" style="color: red;font-size: 18px;"></span>
   <div style="width: 70%">

@@ -13,7 +13,7 @@ import com.rab3tech.dao.entity.Login;
  * Spring Data JPA repository
  *
  */
-public interface LoginRepository extends JpaRepository<Login, Integer> {
+public interface LoginRepository extends JpaRepository<Login, String> {
 	
 	public Optional<Login> findByLoginidAndPassword(String loginid,String password);
 	public Optional<Login> findByLoginid(String loginid);

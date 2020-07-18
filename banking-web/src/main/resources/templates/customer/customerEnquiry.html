@@ -23,6 +23,70 @@
   background-color:#e9ffe7;
 }
 </style>
+<script type="text/javascript">
+
+function clearText(){
+	document.getElementById("nameError").innerHTML=""
+    document.getElementById("emailError").innerHTML=""
+     document.getElementById("mobileError").innerHTML=""
+     
+}
+function validation(){
+	var nameObj = document.getElementById("name");
+	var nametext = nameObj.value;//has the value
+	if(nametext.length==0){
+		nameObj.focus();
+		document.getElementById("nameError").innerHTML="Please enter your username!"//span object and msg come in between
+	    return;
+	}
+	
+}
+function validation(){
+	var emailObj = document.getElementById("email");
+	var emailtext = emailObj.value;//has the value
+	if(emailtext.length==0){
+		emailObj.focus();
+		document.getElementById("emailError").innerHTML="Please enter your email!"//span object and msg come in between
+	    return;
+	}
+	
+}
+function validation(){
+	var mobileObj = document.getElementById("mobile");
+	var mobileetext = mobileObj.value;//has the value
+	if(usernametext.length==0){
+		mobileObj.focus();
+		document.getElementById("mobileError").innerHTML="Please enter your mobile!"//span object and msg come in between
+	    return;
+	}
+	
+function validation(){
+	var accTypeObj = document.getElementById("accType");
+	var accTypetext = accTypeObj.value;//has the value
+	if(accTypetext.length==0){
+		accTypeObj.focus();
+		document.getElementById("accTypeError").innerHTML="Please enter your accType!"//span object and msg come in between
+	    return;
+	}
+	
+}
+
+}
+function validation(){
+	var locationObj = document.getElementById("location");
+	var locationtext = locationObj.value;//has the value
+	if(locationtext.length==0){
+		locationObj.focus();
+		document.getElementById("locationError").innerHTML="Please enter your location!"//span object and msg come in between
+		//$("locationError").html("")
+	    return;
+	}
+	
+	document.getElementById("enquiryForm").submit();//send data to the server, can use name or id -------basiclaly submitting the form
+
+}
+
+</script>
 </head>
 <body>
 <header style="height: 30px;background-color: maroon;">
@@ -33,25 +97,31 @@
   <img th:src="@{/images/customer-en.png}" alt="Logo" style="height: 120px"/>
   <div style="width: 70%">
   
-   <form th:action="@{/customer/account/enquiry}" method="POST"  th:object="${customerSavingVO}" >
+   <form th:action="@{/customer/account/enquiry}" id="enquiryForm" method="POST"  th:object="${customerSavingVO}" onkeyup="clearText()" >
   
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" style="width: 60%;" class="form-control" th:field="*{name}" placeholder="Enter name">
+      <input type="text" style="width: 60%;" class="form-control" id="name" th:field="*{name}" placeholder="Enter name" onkeyup="clearText()">
+                  <span id="nameError" style="color: red;font-size: 18px;font-weight: bold;"></span>
+      
     </div>
   
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" th:field="*{email}" placeholder="Enter email">
+      <input type="email" class="form-control" id="email"th:field="*{email}" placeholder="Enter email" onkeyup="clearText()">
+         <span id="emailError" style="color: red;font-size: 18px;font-weight: bold;"></span>
+      
     </div>
     <div class="form-group">
       <label for="mobile">Mobile:</label>
-      <input type="text" style="width: 60%;" th:field="*{mobile}"  class="form-control" placeholder="Enter mobile">
+      <input type="text" style="width: 60%;" id="mobile"th:field="*{mobile}"  class="form-control" placeholder="Enter mobile" >
+                  <span id="mobileError" style="color: red;font-size: 18px;font-weight: bold;"></span>
     </div>
     
      <div class="form-group">
       <label for="accType">A/C type:</label>
-      <select style="width: 60%;"  class="form-control" th:field="*{accType}">
+                  <span id="accTypeError" style="color: red;font-size: 18px;font-weight: bold;" ></span>
+      <select style="width: 60%;"  class="form-control" id="accType" th:field="*{accType}">
          <option value="SAVING">SAVING</option>
          <option value="CURRENT">CURRENT</option>
          <option value="CORPORATE">CORPORATE</option>
@@ -61,13 +131,14 @@
    
    <div class="form-group">
       <label for="location">Location:</label>
-      <select style="width: 80%;"  class="form-control" th:field="*{location}">
+        <span id="locationError" style="color: red;font-size: 18px;font-weight: bold;" onkeyup="clearText()"></span>
+      <select style="width: 80%;"  class="form-control" id="location" th:field="*{location}">
          <option value="Fremont">Fremont</option>
          <option value="California">California</option>
       </select>
     </div>
    
-    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+    <button type="button" class="btn btn-primary" onclick="validation()">Submit Enquiry</button>
     <a th:href="@{/customer/login}"> 
     <button type="button" class="btn btn-danger">Login</button>
     </a>

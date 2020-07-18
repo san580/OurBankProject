@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<header style="height: 30px; background-color: teal; color: white;">
+		 Mr. <span th:utext="${session.userSessionVO.username}"
+			th:unless="${session == null}" style="font-weight: bold;"></span>
+	</header>
+<body>
+<div> <img th:src="@{/images/bank.jpg}" align="left" alt="bank" ></img> </div>
+	<div class="container">
+		<nav class="navbar navbar-expand bg-company-teal navbar-light">
+			<a class="navbar-brand">OUR BANK</a>
+			<ul class="nav navbar-nav">
+				<li class="nav-items" ><a th:href="@{/customer/updateProfile}">
+				<button type="button"  class="btn btn-link" style="color:orange">My Account</button></a></li>
+				
+				
+				<li class="nav-items"><a th:href="@{/customer/showBeneficiary}">
+				<button type="button" class="btn btn-link" style="color:green">Add Payee</button>
+			</a> </li>
+			
+				<li class="nav-items"><a th:href="@{/customer/loadingfundTransfer}">
+				<button type="button" class="btn btn-link" style="color:red">Fund Transfer</button>
+			</a> </li>
+			
+			<li class="nav-items"><a th:href="@{/customer/accountStatement}">
+				<button type="button" class="btn btn-link" style="color:blue">Account Summary</button>
+			</a> </li>
+			
+			<li class="nav-items"><a th:href="@{/customer/logout}">
+				<button type="button" class="btn btn-link" style="color:teal">Logout</button>
+			</a> </li>
+			
+			</ul>
+		</nav>
+
+		</div>
+		
+
+</body>
+</html>

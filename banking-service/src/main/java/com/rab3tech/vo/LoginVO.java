@@ -1,5 +1,6 @@
 package com.rab3tech.vo;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class LoginVO {
@@ -7,12 +8,22 @@ public class LoginVO {
 	private int uid;
 	private String username;
 	private String password;
+	private Timestamp llt;
 	private String email;
 	private List<String> roles;
 	private String name;
 	private String salutation;
 	private String locked;
 	
+	
+	public Timestamp getLlt() {
+		return llt;
+	}
+
+	public void setLlt(Timestamp llt) {
+		this.llt = llt;
+	}
+
 	public String getLocked() {
 		return locked;
 	}

@@ -23,6 +23,36 @@
   background-color:#e9ffe7;
 }
 </style>
+<script type="text/javascript">
+function clearText(){
+	document.getElementById("usernameError").innerHTML=""
+    document.getElementById("passwordError").innerHTML=""
+
+}
+function validation(){
+	var usernameObj = document.getElementById("username");
+	var usernametext = usernameObj.value;//has the value
+	if(usernametext.length==0){
+		usernameObj.focus();
+		document.getElementById("usernameError").innerHTML="Please enter your username!"//span object and msg come in between
+	    return;
+	}
+	
+}
+
+function validation(){
+	var passwordObj = document.getElementById("password");
+	var passwordtext = passwordObj.value;
+	if(passwordtext.length==0){
+		passwordObj.focus();
+		document.getElementById("passwordError").innerHTML="Please enter your password!"
+	    return;
+	}
+	
+	document.getElementById("loginForm").submit();//send data to the server, can use name or id -------basiclaly submitting the form
+}
+
+</script>
 </head>
 <body>
 <header style="height: 30px;background-color: maroon;">
@@ -35,21 +65,26 @@
    <span th:utext="${error}" style="color: red;font-size: 18px;font-weight: bold;"></span>
       <span th:utext="${message}" style="color: blue;font-size: 18px;font-weight: bold;"></span>
   <div style="width: 70%">
-   <form th:action="@{/customer/login}" method="POST" >
+   <form th:action="@{/customer/login}" id="loginForm" method="POST" >
     <div class="form-group">
       <label for="username">Username:</label>
-      <input type="text" style="width: 60%;" class="form-control"  name="username"  placeholder="Enter username">
+      <input type="text" style="width: 60%;" class="form-control"  name="username" id="username" placeholder="Enter username" onkeyup="clearText()">
+            <span id="usernameError" style="color: red;font-size: 18px;font-weight: bold;"></span>
     </div>
-  
     <div class="form-group">
       <label for="password">Password:</label>
-       <input type="password" style="width: 60%;" class="form-control"  name="password"  placeholder="Enter password">
+       <input type="password" style="width: 60%;" class="form-control"  name="password" id="password"  placeholder="Enter password" onkeyup="clearText()">
+             <span id="passwordError" style="color: red;font-size: 18px;font-weight: bold;"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="button" class="btn btn-primary" onclick="validation()">Login</button>
     <button type="reset" class="btn btn-danger">Reset</button>
     <a th:href="@{/customer/account/enquiry}"> 
     <button type="button" class="btn btn-warning">Customer Enquiry</button>
     </a>
+    <a th:href="@{/customer/forgetPassword}"> 
+    <button type="button" class="btn btn-success">Forget Password</button>
+    </a>
+    
   </form>
   </div>
 </div>

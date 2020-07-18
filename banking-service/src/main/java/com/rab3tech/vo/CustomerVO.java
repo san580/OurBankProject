@@ -3,6 +3,8 @@ package com.rab3tech.vo;
 import java.util.Arrays;
 import java.util.List;
 
+import com.rab3tech.dao.entity.SecurityQuestions;
+
 /**
  * 
  * @author 
@@ -38,10 +40,19 @@ public class CustomerVO {
     private byte[] image;
     private String role;
     private String token;
+    List<SecurityQuestions> securityQuestions;
+
+	private List<Integer> roleids;
+   
     
-    private List<Integer> roleids;
-    
-	
+    public List<SecurityQuestions> getSecurityQuestions() {
+		return securityQuestions;
+	}
+
+	public void setSecurityQuestions(List<SecurityQuestions> securityQuestions) {
+		this.securityQuestions = securityQuestions;
+	}
+
 	public List<Integer> getRoleids() {
 		return roleids;
 	}

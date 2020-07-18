@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<style>
+.ffooter {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: red;
+	color: white;
+	text-align: center;
+	height: 30px;
+	background-color: #e9ffe7;
+}
+</style>
+</head>
+<body>
+<div class="container">
+	<div th:fragment="Text">
+	    </div>
+	 </div>
+	  <div th:insert="customer/Text"></div>
+	<span th:utext="${error}"
+		style="color: red; font-size: 18px; font-weight: bold;"></span>
+	<span th:utext="${message}"
+		style="color: blue; font-size: 18px; font-weight: bold;"></span>
+	<br />
+	<div th:if="${payeeInfoVO != null}" style="width: 100%">
+		<form action='#' method="post" th:action="@{/customer/transferfund}">
+		   <input type="hidden" class="form-control" id="customerId">
+			<div class="form-group col-md-4">
+				Beneficiary Details:
+				<select class="form-contol"  name="payeeId">
+					<option th:each="payeeInfo: ${payeeInfoVO}"
+						th:value="${payeeInfo.id}" th:text="${payeeInfo.payeeNickName}"></option>
+				</select> 
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="amount">Amount To Transfer:</label> <input type="text"
+					style="width: 60%;" class="form-control" name="amount"
+					placeholder="Enter amount">
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="description">Description:</label> <input type="text"
+					style="width: 60%;" class="form-control" name="description"
+					placeholder="Enter decription">
+			</div>
+			<button type="submit" class="btn btn-success">Transfer</button>
+			<div th:unless="${payeeInfoVO != null}">
+				<P>You don't have any beneficiary. Please go ahead and add.</P>
+			</div>
+
+
+		</form>
+	</div>
+
+</body>
+
+</body>
+</html>

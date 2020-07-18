@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Login Page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  
-  <style>
+<title>Login Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<style>
 .ffooter {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;
-  height: 30px;
-  background-color:#e9ffe7;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: red;
+	color: white;
+	text-align: center;
+	height: 30px;
+	background-color: #e9ffe7;
 }
 </style>
 </head>
 <body>
-<header style="height: 30px;background-color: maroon;color:white;">
-  Hello Mr. <span th:utext="${session.userSessionVO.username}" th:unless="${session == null}" style="font-weight: bold;"></span>
-   
-</header>
-<div class="container">
-  <h2>Customer Dashboard Page
-  </h2>
-  <img th:src="@{/images/customer_dashboard.jpg}" alt="page"/>
-   <span th:utext="${error}" style="color: red;font-size: 18px;"></span>
-  <div style="width: 70%">
-  </div>
-</div>
-<footer  class="ffooter">
-</footer>
+	<div class="container">
+	    <div th:fragment="Text">
+	    </div>
+	    <div th:insert="customer/Text"></div>
+	    <img th:src="@{/images/customer_dashboard.jpg}" alt="page" /> <span
+				th:utext="${error}" style="color: red; font-size: 18px;"></span> 
+		<!-- <h2>Customer Dashboard Page</h2>
+		<div style="width: 70%">
+			<a th:href="@{/customer/updateProfile}">
+				<button type="button" class="btn btn-success">My Account</button>
+			</a> <a th:href="@{/customer/showBeneficiary}">
+				<button type="button" class="btn btn-success">Add Payee</button>
+			</a> <a th:href="@{/customer/loadingfundTransfer}">
+				<button type="button" class="btn btn-success">Fund Transfer</button>
+			</a> <a th:href="@{/customer/logout}">
+				<button type="button" class="btn btn-warning">Logout</button>
+			</a> <img th:src="@{/images/customer_dashboard.jpg}" alt="page" /> <span
+				th:utext="${error}" style="color: red; font-size: 18px;"></span> 
+		</div> -->
+	</div>
+	<footer class="ffooter"> </footer>
 
 </body>
 </html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login Page</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+	    $('#transactionList').DataTable();
+	} );
+  
+  
+  </script>
+
+  <style>
+.ffooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  height: 30px;
+  background-color:#e9ffe7;
+}
+</style>
+</head>
+<body>
+<div class="container">
+	    <div th:fragment="Text">
+	    </div>
+	    <div th:insert="customer/Text"></div>
+  <h2>Account Summary</h2>
+  <div th:if="${transactionVO != null}"  style="width: 100%">
+    <table id="transactionList" class="table table-striped table-bordered" style="width:100%">
+  <thead>
+  <tr style="color:green" >
+  <td> Beneficairy Name </td>
+  <td> Beneficiary AccountNumber </td>
+  <td> Amount </td>
+  <td> Transaction Type </td>
+  <td> Description</td>
+  <td> Transaction Date </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="transaction: ${transactionVO}">
+  <td th:text="${transaction.payee.payeeName}"/>
+  <td th:text="${transaction.payee.payeeNickName}"/>
+  <td th:text="${transaction.amount}"/>
+  	<td th:text="${transaction.accountTransactionType}"/>
+  	<td th:text="${transaction.description}"/>
+  	<td th:text="${transaction.transactionDate}"/>
+  	<td>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+<footer  class="ffooter">
+</footer>
+
+</body>
+</html>

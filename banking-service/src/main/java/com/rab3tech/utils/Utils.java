@@ -14,4 +14,12 @@ public class Utils {
 		return sb.toString();
 	}
 
+	public static String generateCustomerAccount() {
+	    Random r = new Random(System.currentTimeMillis());
+	    return "00"+(1000000000 + r.nextInt(2000000000))+"";
+	}
+
+	public static void main(String[] args) {
+		System.out.println(generateCustomerAccount());
+	}
 }

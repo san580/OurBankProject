@@ -17,20 +17,24 @@ import com.rab3tech.admin.dao.repository.AccountStatusRepository;
 import com.rab3tech.admin.dao.repository.AccountTypeRepository;
 import com.rab3tech.aop.advice.TimeLogger;
 import com.rab3tech.customer.dao.repository.CustomerAccountEnquiryRepository;
+import com.rab3tech.customer.dao.repository.CustomerAccountRepository;
 import com.rab3tech.dao.entity.AccountStatus;
 import com.rab3tech.dao.entity.AccountType;
+import com.rab3tech.dao.entity.Customer;
 import com.rab3tech.dao.entity.CustomerSaving;
 import com.rab3tech.email.service.EmailService;
 import com.rab3tech.service.exception.BankServiceException;
 import com.rab3tech.utils.AccountStatusEnum;
 import com.rab3tech.utils.Utils;
 import com.rab3tech.vo.CustomerSavingVO;
+import com.rab3tech.vo.CustomerVO;
 import com.rab3tech.vo.EmailVO;
 
 @Service
 @Transactional
 public class CustomerEnquiryServiceImpl implements CustomerEnquiryService {
-
+@Autowired
+private CustomerAccountRepository customerAccountRepository;
 	@Autowired
 	private CustomerAccountEnquiryRepository customerAccountEnquiryRepository;
 
@@ -181,5 +185,38 @@ public class CustomerEnquiryServiceImpl implements CustomerEnquiryService {
 		}
 		return customerSavingVOList;
 	}
+
+	@Override
+	public List<CustomerVO> findPendingAccounts() {
+		List<Customer> customerList = customerAccountRepository.findAll();
+		List<CustomerVO> customerVO = new ArrayList<CustomerVO>();
+		for (Customer customer : customerList) {
+			CustomerVO customerVO1 = new CustomerVO();
+			BeanUtils.copyProperties(customer, customerVO1);
+			customerVO.add(customerVO1);
+		}
+		return customerVO;
+	}
+
+	@Override
+	public CustomerVO findByCustomerId(int id) {
+		Customer customer=customerAccountRepository.findById(id).get();
+		CustomerVO customerVO1 = new CustomerVO();
+		BeanUtils.copyProperties(customer, customerVO1);
+		return customerVO1;
+	}
+
+	
+
+	@Override
+	@TimeLogger
+	public List<CustomerSavingVO> findRegisteredEnquiry() {
+		List<CustomerSaving> customerSavingList = customerAccountEnquiryRepository.findPendingEnquiries(AccountStatusEnum.REGISTERED.name());
+		return convertEntityIntoVO(customerSavingList);
+	}
+	
+	
+	
+		
 
 }

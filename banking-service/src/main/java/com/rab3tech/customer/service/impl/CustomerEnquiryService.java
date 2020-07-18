@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.rab3tech.vo.CustomerSavingVO;
+import com.rab3tech.vo.CustomerVO;
 
 public interface CustomerEnquiryService {
 	public CustomerSavingVO save(CustomerSavingVO customerSavingVO);
@@ -15,4 +16,8 @@ public interface CustomerEnquiryService {
 	String updateEnquiryRegId(int csaid, String ucrid);
 	Optional<CustomerSavingVO> findCustomerEnquiryByUuid(String ucrid);
 	List<CustomerSavingVO> findPendingEnquiry();
+	public List<CustomerVO> findPendingAccounts();
+	public CustomerVO findByCustomerId(int id);
+	List<CustomerSavingVO> findRegisteredEnquiry();
+
 }
